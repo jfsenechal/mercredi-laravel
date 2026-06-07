@@ -24,6 +24,8 @@
         "laravel/framework": "^13.0",
         "laravel/tinker": "^3.0",
         "filament/spatie-laravel-media-library-plugin": "^5.0",
+        "spatie/browsershot": "^5.2.3",
+        "spatie/laravel-pdf": "^2.1.1",
         "laravel/nightwatch": "^1.26",
         "nunomaduro/essentials": "^1.2",
         "psy/psysh": "^0.12.19",
