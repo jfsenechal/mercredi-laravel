@@ -23,7 +23,7 @@ final class ReductionResource extends Resource
 
     protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedReceiptPercent;
 
-    protected static string|UnitEnum|null $navigationGroup = 'Activités';
+    protected static string|UnitEnum|null $navigationGroup = 'Paramètres';
 
     protected static ?string $modelLabel = 'réduction';
 

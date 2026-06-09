@@ -25,9 +25,9 @@ final class GuardianResource extends Resource
 
     protected static string|UnitEnum|null $navigationGroup = 'Personnes';
 
-    protected static ?string $modelLabel = 'responsable';
+    protected static ?string $modelLabel = 'parent';
 
-    protected static ?string $pluralModelLabel = 'responsables';
+    protected static ?string $pluralModelLabel = 'parents';
 
     protected static ?string $recordTitleAttribute = 'last_name';
 

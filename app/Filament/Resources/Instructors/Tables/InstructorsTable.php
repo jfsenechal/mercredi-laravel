@@ -25,35 +25,36 @@ final class InstructorsTable
                     ->searchable(),
                 TextColumn::make('street')
                     ->label('Rue')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('postal_code')
                     ->label('Code postal')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('city')
                     ->label('Ville')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('email')
                     ->label('Adresse e-mail')
-                    ->searchable(),
-                TextColumn::make('gender')
-                    ->label('Sexe')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('phone')
                     ->label('Téléphone')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('office_phone')
                     ->label('Téléphone bureau')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('mobile')
                     ->label('GSM')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('is_archived')
                     ->label('Archivé')
-                    ->boolean(),
-                TextColumn::make('created_by')
-                    ->label('Créé par')
-                    ->numeric()
-                    ->sortable(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()

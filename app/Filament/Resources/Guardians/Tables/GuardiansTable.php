@@ -25,68 +25,56 @@ final class GuardiansTable
                     ->searchable(),
                 TextColumn::make('street')
                     ->label('Rue')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('postal_code')
                     ->label('Code postal')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('city')
                     ->label('Ville')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('email')
                     ->label('Adresse e-mail')
-                    ->searchable(),
-                TextColumn::make('partner_relation')
-                    ->label('Relation du partenaire')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('partner_last_name')
                     ->label('Nom du partenaire')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('partner_first_name')
                     ->label('Prénom du partenaire')
-                    ->searchable(),
-                TextColumn::make('partner_phone')
-                    ->label('Téléphone du partenaire')
-                    ->searchable(),
-                TextColumn::make('partner_office_phone')
-                    ->label('Téléphone bureau du partenaire')
-                    ->searchable(),
-                TextColumn::make('partner_mobile')
-                    ->label('GSM du partenaire')
-                    ->searchable(),
-                TextColumn::make('partner_email')
-                    ->label('E-mail du partenaire')
-                    ->searchable(),
-                TextColumn::make('gender')
-                    ->label('Sexe')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('phone')
                     ->label('Téléphone')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 TextColumn::make('office_phone')
                     ->label('Téléphone bureau')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('mobile')
                     ->label('GSM')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(),
                 IconColumn::make('is_archived')
                     ->label('Archivé')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 IconColumn::make('wants_paper_invoice')
                     ->label('Souhaite une facture papier')
-                    ->boolean(),
+                    ->boolean()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('iban')
                     ->label('IBAN')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('national_register_number')
                     ->label('Numéro de registre national')
-                    ->searchable(),
-                TextColumn::make('slug')
-                    ->label('Slug')
-                    ->searchable(),
-                TextColumn::make('created_by')
-                    ->label('Créé par')
-                    ->numeric()
-                    ->sortable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')
                     ->label('Créé le')
                     ->dateTime()
