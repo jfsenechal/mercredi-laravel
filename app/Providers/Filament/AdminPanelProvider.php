@@ -33,6 +33,8 @@ final class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login(Login::class)
+            ->resourceCreatePageRedirect('view')
+            ->resourceEditPageRedirect('view')
             ->spa()
             ->profile()
             ->multiFactorAuthentication(
@@ -42,8 +44,10 @@ final class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
 //            ->topNavigation()
             ->colors([
-                'primary' => Color::Blue,
+                'primary' => Color::Pink,
             ])
+            ->databaseNotifications()
+            ->unsavedChangesAlerts()
             ->viteTheme('resources/css/filament/admin/theme.css')
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\Filament\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\Filament\Pages')

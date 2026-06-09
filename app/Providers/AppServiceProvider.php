@@ -11,7 +11,11 @@ use Filament\Support\Concerns\Configurable;
 use Filament\Tables\Columns\Column;
 use Filament\Tables\Filters\BaseFilter;
 use Filament\Tables\Table;
+use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Str;
 
 final class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +28,16 @@ final class AppServiceProvider extends ServiceProvider
     {
         $this->configureTable();
         $this->translatableComponents();
+        $this->configureRateLimiting();
+    }
+
+    private function configureRateLimiting(): void
+    {
+        RateLimiter::for('login', function (Request $request): Limit {
+            $key = Str::lower((string) $request->input('username')).'|'.$request->ip();
+
+            return Limit::perMinute(5)->by($key);
+        });
     }
 
     private function translatableComponents(): void
