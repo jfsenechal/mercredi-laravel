@@ -17,6 +17,7 @@
         "configure-nightwatch",
         "pest-testing",
         "tailwindcss-development",
+        "filament-security-audit",
         "debug-using-debugbar"
     ]
 }
