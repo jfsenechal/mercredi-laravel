@@ -10,12 +10,21 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('instructor_user', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
-            $table->foreignId('instructor_id')->constrained('instructors')->cascadeOnDelete();
+        if (Schema::hasTable('user_animateur')) {
+            Schema::table('user_animateur', function (Blueprint $table): void {
+                $table->rename('instructor_user');
+            });
+            Schema::table('instructor_user', function (Blueprint $table): void {
+                $table->renameColumn('animateur_id', 'instructor_id');
+            });
+        } else {
+            Schema::create('instructor_user', function (Blueprint $table) {
+                $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
+                $table->foreignId('instructor_id')->constrained('instructors')->cascadeOnDelete();
 
-            $table->primary(['user_id', 'instructor_id']);
-        });
+                $table->primary(['user_id', 'instructor_id']);
+            });
+        }
     }
 
     public function down(): void

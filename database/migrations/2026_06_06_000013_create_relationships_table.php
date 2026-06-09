@@ -10,16 +10,28 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('relationships', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('guardian_id')->constrained('guardians')->cascadeOnDelete();
-            $table->foreignId('child_id')->constrained('children')->cascadeOnDelete();
-            $table->string('type', 200)->nullable()->comment('father, mother, step-father...');
-            $table->smallInteger('position')->default(0);
-            $table->timestamps();
+        if (Schema::hasTable('relation')) {
+            Schema::table('relation', function (Blueprint $table): void {
+                $table->rename('relationships');
+            });
+            Schema::table('relationships', function (Blueprint $table): void {
+                $table->renameColumn('tuteur_id', 'guardian_id');
+                $table->renameColumn('enfant_id', 'child_id');
+                $table->renameColumn('ordre', 'position');
+                $table->timestamps();
+            });
+        } else {
+            Schema::create('relationships', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('guardian_id')->constrained('guardians')->cascadeOnDelete();
+                $table->foreignId('child_id')->constrained('children')->cascadeOnDelete();
+                $table->string('type', 200)->nullable()->comment('father, mother, step-father...');
+                $table->smallInteger('position')->default(0);
+                $table->timestamps();
 
-            $table->unique(['guardian_id', 'child_id']);
-        });
+                $table->unique(['guardian_id', 'child_id']);
+            });
+        }
     }
 
     public function down(): void

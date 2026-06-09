@@ -10,15 +10,28 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('invoice_reductions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('invoice_id')->nullable()->constrained('invoices')->cascadeOnDelete();
-            $table->decimal('amount', 10, 2)->nullable();
-            $table->decimal('percentage', 5, 2)->nullable();
-            $table->dateTime('dated_at');
-            $table->string('name', 150);
-            $table->timestamps();
-        });
+        if (Schema::hasTable('facture_reduction')) {
+            Schema::table('facture_reduction', function (Blueprint $table): void {
+                $table->rename('invoice_reductions');
+            });
+            Schema::table('invoice_reductions', function (Blueprint $table): void {
+                $table->renameColumn('facture_id', 'invoice_id');
+                $table->renameColumn('pourcentage', 'percentage');
+                $table->renameColumn('date_le', 'dated_at');
+                $table->renameColumn('nom', 'name');
+                $table->dropColumn('uuid');
+            });
+        } else {
+            Schema::create('invoice_reductions', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('invoice_id')->nullable()->constrained('invoices')->cascadeOnDelete();
+                $table->decimal('amount', 10, 2)->nullable();
+                $table->decimal('percentage', 5, 2)->nullable();
+                $table->dateTime('dated_at');
+                $table->string('name', 150);
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void

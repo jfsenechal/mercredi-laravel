@@ -10,13 +10,24 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('messages', function (Blueprint $table) {
-            $table->id();
-            $table->longText('subject');
-            $table->longText('body');
-            $table->json('recipients');
-            $table->timestamps();
-        });
+        if (Schema::hasTable('message')) {
+            Schema::table('message', function (Blueprint $table): void {
+                $table->rename('messages');
+            });
+            Schema::table('messages', function (Blueprint $table): void {
+                $table->renameColumn('sujet', 'subject');
+                $table->renameColumn('texte', 'body');
+                $table->renameColumn('destinataires', 'recipients');
+            });
+        } else {
+            Schema::create('messages', function (Blueprint $table) {
+                $table->id();
+                $table->longText('subject');
+                $table->longText('body');
+                $table->json('recipients');
+                $table->timestamps();
+            });
+        }
     }
 
     public function down(): void
